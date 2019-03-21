@@ -1,5 +1,5 @@
 # Kahla.CLI
-Kahla for CLI
+Kahla for CLI. An implementation for Kahla API: [here](https://wiki.aiursoft.com/ReadDoc/Kahla/What%20is%20Kahla.md)
 
 ## How to use
 
@@ -48,3 +48,9 @@ $ kahla send <username> <content>
 ```bash
 $ kahla get-messages <username> --take 15
 ```
+
+## What is the progress of this project?
+
+We are still finding someone who wanna working on this...
+
+Do you wanna join us? Please submit an issue.
