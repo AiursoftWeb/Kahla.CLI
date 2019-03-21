@@ -51,6 +51,6 @@ $ kahla get-messages <username> --take 15
 
 ## What is the progress of this project?
 
-We are still finding someone who wanna working on this...
+We are still finding someone who wanna work on this...
 
 Do you wanna join us? Please submit an issue.
