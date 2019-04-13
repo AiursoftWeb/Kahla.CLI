@@ -1,0 +1,2 @@
+def UseMaster(data):
+	pass
