@@ -41,8 +41,11 @@ class GetMessagesController(Controller):
                     resultdata = json.loads(r.text)
                     if resultdata["code"] == 0:
                         for xx in resultdata["items"]:
-                            // TODO: 必须检查是否是本人的聊天PrivateConversion
-                            if xx["senderId"] != me["id"]:
+                            if me["nickName"] != x["displayName"]:
+                                if xx["senderId"] != me["id"]:
+                                    result = str(decrypt(bytes(xx["content"], "UTF-8"), bytes(x["aesKey"], "UTF-8")), "UTF-8")
+                                    datas.append(result)
+                            else:
                                 result = str(decrypt(bytes(xx["content"], "UTF-8"), bytes(x["aesKey"], "UTF-8")), "UTF-8")
                                 datas.append(result)
                         return datas
