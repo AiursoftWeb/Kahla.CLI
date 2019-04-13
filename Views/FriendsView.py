@@ -1,2 +1,3 @@
 def Friends(data):
-	print(data)
+	for d in data:
+		print(d)

@@ -4,6 +4,7 @@ from Services.KahlaAuthApiService import KahlaAuthApiService
 from Services.StorageCookieService import StorageCookieService
 from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
 from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
+from Library.cryptojs import *
 import json
 
 class FriendsController(Controller):
@@ -25,6 +26,10 @@ class FriendsController(Controller):
 		if self.checkstatusservice.check() == True:
 			friends = self.friendshipservice.Friends()
 			friendsdata = json.loads(friends.text)["items"]
-			return friendsdata
+			datas = []
+			for x in friendsdata:
+				pingdata = "{0} | {1}".format(x["displayName"], x["discriminator"])
+				datas.append(pingdata)
+			return datas
 		else:
-			return "You are not logged in!"
+			return ["You are not logged in!"]

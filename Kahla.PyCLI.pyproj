@@ -21,10 +21,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controllers\FriendsController.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\HomeController.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\LoginController.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\LogoutController.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\UseMasterController.py">
@@ -36,11 +42,20 @@
     <Compile Include="Library\Controller.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Library\cryptojs.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Program.py" />
     <Compile Include="Services\KahlaApiAddressService.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Services\KahlaAuthApiService.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\KahlaFriendShipApiService.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\KahlaSignInStatusCheckService.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Services\StorageCookieService.py">
@@ -49,10 +64,16 @@
     <Compile Include="Startup.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\FriendsView.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Views\HomeView.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Views\LoginView.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\LogoutView.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Views\UseMasterView.py" />
@@ -62,7 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
     <Folder Include="Library\" />
     <Folder Include="Views\" />
     <Folder Include="Services\" />
