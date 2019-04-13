@@ -5,11 +5,12 @@ from Services.StorageCookieService import StorageCookieService
 from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
 from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
 from Services.KahlaConversationApiService import KahlaConversationApiService
+from Services.KahlaAuthApiService import KahlaAuthApiService
 from Library.cryptojs import *
 import json
 
 
-class SendController(Controller):
+class GetMessagesController(Controller):
     def __init__(self):
 	    self.friendshipservice = KahlaFriendShipApiService()
 	    self.checkstatusservice = KahlaSignInStatusCheckService()
@@ -19,29 +20,35 @@ class SendController(Controller):
     def get_options(self):
 	    return [
 			Option('-u', '--username', dest='username'),
-			Option('-m', '--message', dest='message')
+			Option('-t', '--take', dest='take')
 	    ]
 
 	# 处理输入参数, 检查合法性
-    def run(self, username, message):
+    def run(self, username, take):
         # 这条必须编写, 并且带上传入的参数
-        self.compute(username, message)
+        self.compute(username, take)
 
 	# 处理业务逻辑
-    def main(self, username, message):
+    def main(self, username, take):
         if self.checkstatusservice.check() == True:
             friends = self.friendshipservice.Friends()
             friendsdata = json.loads(friends.text)["items"]
+            datas = []
             for x in friendsdata:
                 if x['displayName'] == username:
-                    message = encrypt(bytes(message, "utf-8"), bytes(x["aesKey"], "utf-8"))
-                    r = self.conversionservice.SendMessage(x['conversationId'], message)
+                    me = json.loads(self.friendshipservice.Me().text)["value"]
+                    r = self.conversionservice.GetMesssages(x['conversationId'], take)
                     resultdata = json.loads(r.text)
                     if resultdata["code"] == 0:
-                        return ""
+                        for xx in resultdata["items"]:
+                            // TODO: 必须检查是否是本人的聊天PrivateConversion
+                            if xx["senderId"] != me["id"]:
+                                result = str(decrypt(bytes(xx["content"], "UTF-8"), bytes(x["aesKey"], "UTF-8")), "UTF-8")
+                                datas.append(result)
+                        return datas
                     else:
-                        return "The message could not be sent successfully!"
+                        return ["unknown error!"]
 			
-            return "Your user name is incorrect!"
+            return ["Your user name is incorrect!"]
         else:
-            return "You are not logged in!"
+            return ["You are not logged in!"]

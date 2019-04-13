@@ -5,6 +5,8 @@ from Controllers.UseMasterController import UseMasterController
 from Controllers.LogoutController import LogoutController
 from Controllers.FriendsController import FriendsController
 from Controllers.SearchFriendsController import SearchFriendsController
+from Controllers.GetMessagesController import GetMessagesController
+from Controllers.SendController import SendController
 
 class Startup(object):
 	def __init__(self):
@@ -19,3 +21,5 @@ class Startup(object):
 		routes.add_command("logout", LogoutController())
 		routes.add_command("friends", FriendsController())
 		routes.add_command("searchfriends", SearchFriendsController())
+		routes.add_command("send", SendController())
+		routes.add_command("getmessages", GetMessagesController())

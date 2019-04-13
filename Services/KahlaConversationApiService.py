@@ -13,4 +13,19 @@ class KahlaConversationApiService(object):
 
         return r
 
-    
+    def SendMessage(self, conversationId, Message):
+        r = requests.post("{0}/Conversation/SendMessage".format(self.apiaddress.getaddress()), 
+                            data={
+                                "Id": conversationId,
+                                "Content": Message
+                            },
+                            cookies=self.storagecookie.get())
+        
+        return r
+
+    def GetMesssages(self, conversationId, take):
+        r = requests.get("{0}/Conversation/GetMessage?Id={1}&take={2}".format(self.apiaddress.getaddress(),
+                                                                                str(conversationId), str(take)),
+                                                                                cookies=self.storagecookie.get())
+
+        return r
