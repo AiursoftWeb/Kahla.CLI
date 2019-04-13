@@ -4,6 +4,7 @@ from Controllers.UseStaggingController import UseStaggingController
 from Controllers.UseMasterController import UseMasterController
 from Controllers.LogoutController import LogoutController
 from Controllers.FriendsController import FriendsController
+from Controllers.SearchFriendsController import SearchFriendsController
 
 class Startup(object):
 	def __init__(self):
@@ -17,3 +18,4 @@ class Startup(object):
 		routes.add_command("login", LoginController())
 		routes.add_command("logout", LogoutController())
 		routes.add_command("friends", FriendsController())
+		routes.add_command("searchfriends", SearchFriendsController())
