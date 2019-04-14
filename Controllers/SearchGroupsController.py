@@ -7,7 +7,7 @@ from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
 from Library.cryptojs import *
 import json
 
-class SearchFriendsController(Controller):
+class SearchGroupsController(Controller):
 	def __init__(self):
 		self.friendshipservice = KahlaFriendShipApiService()
 		self.checkstatusservice = KahlaSignInStatusCheckService()
@@ -31,7 +31,7 @@ class SearchFriendsController(Controller):
 			datas = []
 			for x in friendsdata:
 					if x["displayName"].lower().find(searchinput.lower()) >= 0:
-							if x["discriminator"] != "GroupConversation":
+							if x["discriminator"] != "PrivateConversation":
 								pingdata = "{0}".format(x["displayName"])
 								datas.append(pingdata)
 			return datas

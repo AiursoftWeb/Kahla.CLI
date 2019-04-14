@@ -7,33 +7,29 @@ from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
 from Library.cryptojs import *
 import json
 
-class SearchFriendsController(Controller):
+class GroupsController(Controller):
 	def __init__(self):
 		self.friendshipservice = KahlaFriendShipApiService()
 		self.checkstatusservice = KahlaSignInStatusCheckService()
 
 	# 定义参数
 	def get_options(self):
-		return [
-			Option('-si', '--searchinput', dest='searchinput'),	
-		]
+		return []
 
 	# 处理输入参数, 检查合法性
-	def run(self, searchinput):
+	def run(self):
 		# 这条必须编写, 并且带上传入的参数
-		self.compute(searchinput)
+		self.compute()
 
 	# 处理业务逻辑
-	def main(self, searchinput):
+	def main(self):
 		if self.checkstatusservice.check() == True:
 			friends = self.friendshipservice.Friends()
 			friendsdata = json.loads(friends.text)["items"]
 			datas = []
 			for x in friendsdata:
-					if x["displayName"].lower().find(searchinput.lower()) >= 0:
-							if x["discriminator"] != "GroupConversation":
-								pingdata = "{0}".format(x["displayName"])
-								datas.append(pingdata)
+					if x["discriminator"] != "PrivateConversation":
+						datas.append(x["displayName"])
 			return datas
 		else:
 			return ["You are not logged in!"]
