@@ -2,3 +2,4 @@ pycryptodome
 requests
 flask
 flask_script
+ws4py

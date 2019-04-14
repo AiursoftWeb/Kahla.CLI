@@ -15,7 +15,7 @@ Log in
 $ ./kahla login -u <username> -p <password>
 ```
 
-Listen[Not implemented yet]
+Listen
 
 ```bash
 $ kahla listen

@@ -6,15 +6,17 @@ from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
 from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
 from Services.KahlaConversationApiService import KahlaConversationApiService
 from Services.KahlaAuthApiService import KahlaAuthApiService
+from Library.processmessage import ProcessMessage
 from Library.cryptojs import *
 import json
 
 
 class GetMessagesController(Controller):
     def __init__(self):
-	    self.friendshipservice = KahlaFriendShipApiService()
-	    self.checkstatusservice = KahlaSignInStatusCheckService()
-	    self.conversionservice = KahlaConversationApiService()
+            self.friendshipservice = KahlaFriendShipApiService()
+            self.checkstatusservice = KahlaSignInStatusCheckService()
+            self.conversionservice = KahlaConversationApiService()
+            self.processmessage = ProcessMessage()
 
     # 定义参数
     def get_options(self):
@@ -27,26 +29,6 @@ class GetMessagesController(Controller):
     def run(self, username, take):
         # 这条必须编写, 并且带上传入的参数
         self.compute(username, take)
-
-    # 处理消息[检查消息类型]
-    def processMessage(self, message):
-        if message.find("[img]") >= 0:
-            message = message.split("]")[1].split("-")[0]
-            message = "Photo | https://oss.aiursoft.com/download/fromkey/{0}".format(message)
-            return message
-        
-        if message.find("[video]") >= 0:
-            message = message.split("]")[1]
-            message = "Video | https://oss.aiursoft.com/download/fromkey/{0}".format(message)
-            return message
-
-        if message.find("[file]") >= 0:
-            data = message.split("]")[1].split("-")
-            fileuri = self.conversionservice.FileDownloadAddress(data[0])
-            message = "File | {2} | {0} | {1}".format(data[1], data[2], json.loads(fileuri.text)["downloadPath"])
-            return message
-
-        return "Text | {0}".format(message)
 
 	# 处理业务逻辑
     def main(self, username, take):
@@ -64,16 +46,16 @@ class GetMessagesController(Controller):
                             if x["discriminator"] == "PrivateConversation":
                                 if xx["senderId"] != me["id"]:
                                     result = str(decrypt(bytes(xx["content"], "UTF-8"), bytes(x["aesKey"], "UTF-8")), "UTF-8")
-                                    result = self.processMessage(result)
+                                    result = self.processmessage.processMessage(result)
                                     datas.append("{0} | {1}".format(x["displayName"], result))
                                 else:
                                     result = str(decrypt(bytes(xx["content"], "UTF-8"), bytes(x["aesKey"], "UTF-8")), "UTF-8")
-                                    result = self.processMessage(result)
+                                    result = self.processmessage.processMessage(result)
                                     datas.append("{0} | {1}".format(me["nickName"], result))                    
                             else:
                                 data = json.loads(self.friendshipservice.UserDetail(xx['senderId']).text)["user"]
                                 result = str(decrypt(bytes(xx["content"], "UTF-8"), bytes(x["aesKey"], "UTF-8")), "UTF-8")
-                                result = self.processMessage(result)
+                                result = self.processmessage.processMessage(result)
                                 datas.append("{0} | {1} | {2}".format(x["displayName"], data["nickName"], result))
                         return datas
                     else:

@@ -10,6 +10,7 @@ from Controllers.DeleteFriendsController import DeleteFriendsController
 from Controllers.LeaveGroupsController import LeaveGroupsController
 from Controllers.GroupsController import GroupsController
 from Controllers.SearchGroupsController import SearchGroupsController
+from Controllers.ListenController import ListenController
 
 class Startup(object):
 	def __init__(self):
@@ -41,3 +42,5 @@ class Startup(object):
 		routes.add_command("groups", GroupsController())
 		# kahla searchgroups
 		routes.add_command("searchgroups", SearchGroupsController())
+		# kahla listen
+		routes.add_command("listen", ListenController())

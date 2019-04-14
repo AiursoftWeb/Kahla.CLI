@@ -17,3 +17,9 @@ class KahlaAuthApiService(object):
 		})
 		
 		return r
+	
+	def InitPusher(self):
+		r = requests.get("{0}/Auth/InitPusher".format(self.apiaddress.getaddress()),
+						cookies=self.storagecookie.get())
+		
+		return r
