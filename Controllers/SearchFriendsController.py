@@ -30,9 +30,10 @@ class SearchFriendsController(Controller):
 			friendsdata = json.loads(friends.text)["items"]
 			datas = []
 			for x in friendsdata:
-				if x["displayName"].lower().find(searchinput.lower()) >= 0:
-					pingdata = "{0} | {1}".format(x["displayName"], x["discriminator"])
-					datas.append(pingdata)
+					if x["displayName"].lower().find(searchinput.lower()) >= 0:
+							if x["discriminator"] != "GroupConversation":
+								pingdata = "{0} | {1}".format(x["displayName"], x["discriminator"])
+								datas.append(pingdata)
 			return datas
 		else:
 			return ["You are not logged in!"]

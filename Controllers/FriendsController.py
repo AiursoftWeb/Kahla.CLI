@@ -28,8 +28,8 @@ class FriendsController(Controller):
 			friendsdata = json.loads(friends.text)["items"]
 			datas = []
 			for x in friendsdata:
-				pingdata = "{0} | {1}".format(x["displayName"], x["discriminator"])
-				datas.append(pingdata)
+					if x["discriminator"] != "GroupConversation":
+						datas.append(x["displayName"])
 			return datas
 		else:
 			return ["You are not logged in!"]
