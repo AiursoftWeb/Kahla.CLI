@@ -7,6 +7,7 @@ from Controllers.SearchFriendsController import SearchFriendsController
 from Controllers.GetMessagesController import GetMessagesController
 from Controllers.SendController import SendController
 from Controllers.DeleteFriendsController import DeleteFriendsController
+from Controllers.LeaveGroupsController import LeaveGroupsController
 
 class Startup(object):
 	def __init__(self):
@@ -32,3 +33,5 @@ class Startup(object):
 		routes.add_command("getmessages", GetMessagesController())
 		# kahla deletefriends
 		routes.add_command("deletefriends", DeleteFriendsController())
+		# kahla leavegroups
+		routes.add_command("leavegroups", LeaveGroupsController())

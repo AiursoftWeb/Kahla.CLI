@@ -34,3 +34,11 @@ class KahlaFriendShipApiService(object):
 		cookies=self.storagecookie.get())
 
 		return r
+	
+	def LeaveGroup(self, groupname):
+		r = requests.post("{0}/Groups/LeaveGroup".format(self.apiaddress.getaddress()), data={
+			"groupName": groupname
+		},
+		cookies=self.storagecookie.get())
+
+		return r
