@@ -30,9 +30,9 @@ Login
 
 ```bash
 # Windows
-> kahla login --username <username> --password <password>
+> kahla login --email <username> --password <password>
 # Linux
-$ ./kahla login --username <username> --password <password>
+$ ./kahla login --email <username> --password <password>
 ```
 
 Logout
