@@ -30,7 +30,7 @@ class SearchFriendsController(Controller):
 			friendsdata = json.loads(friends.text)["items"]
 			datas = []
 			for x in friendsdata:
-				if x["displayName"].find(searchinput) >= 0:
+				if x["displayName"].lower().find(searchinput.lower()) >= 0:
 					pingdata = "{0} | {1}".format(x["displayName"], x["discriminator"])
 					datas.append(pingdata)
 			return datas
