@@ -20,3 +20,9 @@ class KahlaFriendShipApiService(object):
             r = requests.get("{0}/Auth/Me".format(self.apiaddress.getaddress()), cookies=self.storagecookie.get())
 		
             return r
+	
+	def UserDetail(self, userid):
+		r = requests.get("{0}/Friendship/UserDetail?id={1}".format(self.apiaddress.getaddress(), str(userid)),
+						cookies=self.storagecookie.get())
+
+		return r

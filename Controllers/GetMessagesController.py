@@ -41,13 +41,17 @@ class GetMessagesController(Controller):
                     resultdata = json.loads(r.text)
                     if resultdata["code"] == 0:
                         for xx in resultdata["items"]:
-                            if me["nickName"] != x["displayName"]:
+                            if x["discriminator"] == "PrivateConversation":
                                 if xx["senderId"] != me["id"]:
                                     result = str(decrypt(bytes(xx["content"], "UTF-8"), bytes(x["aesKey"], "UTF-8")), "UTF-8")
-                                    datas.append(result)
+                                    datas.append("{0} | {1}".format(x["displayName"], result))
+                                else:
+                                    result = str(decrypt(bytes(xx["content"], "UTF-8"), bytes(x["aesKey"], "UTF-8")), "UTF-8")
+                                    datas.append("{0} | {1}".format(me["nickName"], result))                    
                             else:
+                                data = json.loads(self.friendshipservice.UserDetail(xx['senderId']).text)["user"]
                                 result = str(decrypt(bytes(xx["content"], "UTF-8"), bytes(x["aesKey"], "UTF-8")), "UTF-8")
-                                datas.append(result)
+                                datas.append("{0} | {1} | {2}".format(x["displayName"], data["nickName"], result))
                         return datas
                     else:
                         return ["unknown error!"]
