@@ -1,3 +1,5 @@
+![KahlaLogo](https://raw.githubusercontent.com/AiursoftWeb/Kahla.App/dev/src/assets/144x144.png)
+
 # Kahla.CLI
 Kahla for CLI. An implementation for Kahla API: [here](https://wiki.aiursoft.com/ReadDoc/Kahla/What%20is%20Kahla.md)
 
