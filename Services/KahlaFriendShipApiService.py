@@ -26,3 +26,11 @@ class KahlaFriendShipApiService(object):
 						cookies=self.storagecookie.get())
 
 		return r
+	
+	def DeleteFriend(self, userid):
+		r = requests.post("{0}/Friendship/DeleteFriend".format(self.apiaddress.getaddress()), data={
+			"id": str(userid)
+		},
+		cookies=self.storagecookie.get())
+
+		return r

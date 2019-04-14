@@ -6,6 +6,7 @@ from Controllers.FriendsController import FriendsController
 from Controllers.SearchFriendsController import SearchFriendsController
 from Controllers.GetMessagesController import GetMessagesController
 from Controllers.SendController import SendController
+from Controllers.DeleteFriendsController import DeleteFriendsController
 
 class Startup(object):
 	def __init__(self):
@@ -13,19 +14,21 @@ class Startup(object):
 	
 	@staticmethod
 	def ConfigureRouting(routes):
-    	# kahla-usestagging
+    	# kahla usestagging
 		routes.add_command("usestagging", UseStaggingController())
-		# kahla-usemaster
+		# kahla usemaster
 		routes.add_command("usemaster", UseMasterController())
-		# kahla-login
+		# kahla login
 		routes.add_command("login", LoginController())
-		# kahla-logout
+		# kahla logout
 		routes.add_command("logout", LogoutController())
-		# kahla-friends
+		# kahla friends
 		routes.add_command("friends", FriendsController())
-		# kahla-searchfriends
+		# kahla searchfriends
 		routes.add_command("searchfriends", SearchFriendsController())
-		# kahla-send
+		# kahla send
 		routes.add_command("send", SendController())
-		# kahla-getmessages
+		# kahla getmessages
 		routes.add_command("getmessages", GetMessagesController())
+		# kahla deletefriends
+		routes.add_command("deletefriends", DeleteFriendsController())
