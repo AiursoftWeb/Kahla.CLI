@@ -3,54 +3,51 @@ Kahla for CLI. An implementation for Kahla API: [here](https://wiki.aiursoft.com
 
 ## How to use
 
-View Help:
+View Help
 
 ```bash
-$ kahla help
+$ ./kahla --help
 ```
 
 Log in
 
 ```bash
-$ kahla login <username>
-password: ******
-Successfully logged in!
+$ ./kahla login -u <username> -p <password>
 ```
 
-Listen
+Listen[Not implemented yet]
 
 ```bash
 $ kahla listen
-Connecting to Kahla server...
-Connected!
 ```
 
 Friendship
 
 ```bash
-$ kahla friends
+$ ./kahla friends
 ```
 
 ```bash
-$ kahla friends search <username>
+$ ./kahla searchfriends -u <username>
 ```
 
 ```bash
-$ kahla friends delete <username>
+$ ./kahla deletefriends -u <username> # 未实现
 ```
 
 Conversation
 
 ```bash
-$ kahla send <username> <content>
+$ ./kahla send -u <username> -m <content>
 ```
 
 ```bash
-$ kahla get-messages <username> --take 15
+$ ./kahla get-messages -u <username> -t 15
 ```
 
-## What is the progress of this project?
+## How to run
 
-We are still finding someone who wanna work on this...
-
-Do you wanna join us? Please submit an issue.
+```bash
+$ pip install requirement.txt
+$ python Program.py
+```
