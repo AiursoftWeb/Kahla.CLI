@@ -1,4 +1,5 @@
 from Services.KahlaConversationApiService import KahlaConversationApiService
+import json
 
 class ProcessMessage(object):
     def __init__(self):
