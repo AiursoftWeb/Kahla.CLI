@@ -1,11 +1,13 @@
+# Kahla.CLI
+
 ![KahlaLogo](https://raw.githubusercontent.com/AiursoftWeb/Kahla.App/dev/src/assets/144x144.png)
 
-# Kahla.CLI
 [![Build status](https://aiursoft.visualstudio.com/Star/_apis/build/status/Kahla%20CLI%20CI)](https://aiursoft.visualstudio.com/Star/_build/latest?definitionId=9)
 
 Kahla for CLI. An implementation for Kahla API: [here](https://wiki.aiursoft.com/ReadDoc/Kahla/What%20is%20Kahla.md)
 
 ## How to Use
+
 View Help
 
 ```bash
@@ -88,49 +90,53 @@ $ kahla listen
 ```
 
 ## How to run
-Before running, you need to install the dependencies
+
+Before running, you need to install the dependencies:
+
 ```bash
 $ pip install -r requirement.txt
 $ pip install -r devrequirement.txt
 ```
 
 You can run this project by running the following shell command:
+
 ```bash
 $ kahla xxxx
 ```
 
 ## Project Dependencies
-We developed this using Python3.7 and recommend downloading the latest version of Python3.7 directly.
-
-Windows users also need to install the Python runtime when using executables
-
-## Project Support OS
-This project supports Windows Mac Linux.
-
-Currently, Mac and Linux only support bash scripting, and Windows supports exe executables
-
-## Project Dependencies SDK Download Address
 
 [Python 3.7](https://www.python.org/downloads/release/python-373/)
 
+We developed this under `Python3.7` and we recommend downloading the latest version of Python3.7 directly.
+
+This project supports Windows Mac Linux.
+
+Windows users also need to install the Python runtime when using executables.
+
+Currently, Mac and Linux only support bash scripting and Windows supports exe executables.
+
+## Project Dependencies SDK Download Address
+
+If you are a normal user, you only need to install `requirement.txt`.
+
+If you are a developer, you need to install `devrequirement.txt`.
+
 Other packages use the pip installation directly.
-If you are a normal user, you only need to install requirement.txt. 
 
-If you are a developer, you need to install devrequirement.txt
-
-## How to build to exe
-
-This command depends on all the packages that need to be installed above
+## How to build exe
 
 ```bash
-./publishforwindows.sh
+$ ./publishforwindows.sh
 ```
 
-The files under the dist/Program/ directory are the compiled files
+This command requires all the packages above.
+
+The files under the `dist/Program/` directory are the compiled binarys.
 
 ## Document
 
-For more info please view [Kahla Wiki](https://wiki.aiursoft.com/ReadDoc/Kahla/What%20is%20Kahla.md)
+For more info please view [Kahla Wiki](https://wiki.aiursoft.com/ReadDoc/Kahla/What%20is%20Kahla.md).
 
 ## How to contribute
 
