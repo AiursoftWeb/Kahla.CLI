@@ -19,7 +19,7 @@ class ProcessMessage(object):
         if message.find("[file]") >= 0:
             data = message.split("]")[1].split("-")
             fileuri = self.conversionservice.FileDownloadAddress(data[0])
-            fileuri = json.loads(fileuri)
+            fileuri = json.loads(fileuri.text)
             fileuri = fileuri["downloadPath"]
             message = "File | {2} | {0} | {1}".format(data[1], data[2], fileuri)
             return message
@@ -29,6 +29,7 @@ class ProcessMessage(object):
             audiouri = self.conversionservice.FileDownloadAddress(audiokey)
             audiouri = json.loads(audiouri.text)
             audiouri = audiouri["downloadPath"]
+            audiouri = audiouri.replace("audio", "audio.ogg")
             message = "Audio | {0}".format(audiouri)
             return message
 
