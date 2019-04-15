@@ -1,5 +1,6 @@
 from pickle import dump
 from pickle import load
+from Services.HomeFloderConfig import HomeFloderConfig
 
 class KahlaApiAddressService(object):
 	serverAddress = None
@@ -9,7 +10,7 @@ class KahlaApiAddressService(object):
 	
 	def __init__(self):
 		try:
-			with open("./user.apiaddress.bin", "rb") as f:
+			with open("{0}/user.apiaddress.bin".format(HomeFloderConfig().getconfigpath()), "rb") as f:
 				data = load(f)
 				if data == True:
 					self.serverAddress = "https://server.kahla.app"
@@ -21,11 +22,11 @@ class KahlaApiAddressService(object):
 			self.serverAddress = "https://server.kahla.app"
 
 	def usemaster(self):
-		with open("./user.apiaddress.bin", "wb") as f:
+		with open("{0}/user.apiaddress.bin".format(HomeFloderConfig().getconfigpath()), "wb") as f:
 			dump(True, f)
 
 	def usestagging(self):
-		with open("./user.apiaddress.bin", "wb") as f:
+		with open("{0}/user.apiaddress.bin".format(HomeFloderConfig().getconfigpath()), "wb") as f:
 			dump(False, f)
 
 	def getaddress(self):

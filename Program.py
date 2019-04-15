@@ -6,10 +6,14 @@ from flask_script import Manager
 from flask_script import Command
 from Startup import Startup
 from platform import system
+from Services.HomeFloderConfig import HomeFloderConfig
 
 app = Flask(__name__)
 manager = Manager(app)
+configpath = HomeFloderConfig()
 
+# Seed Config Path
+configpath.mkdirconfigpath()
 # Configure Routing
 Startup.ConfigureRouting(manager)
 

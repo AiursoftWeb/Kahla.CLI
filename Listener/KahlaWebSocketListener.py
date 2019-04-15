@@ -14,11 +14,10 @@ class KahlaWebsocketListener(WebSocketClient):
         me = json.loads(me.text)["value"]
         messagedata = json.loads(str(message))
         if messagedata["typeDescription"] == "NewMessage":
-            if messagedata["sender"]["id"] != me["id"]:
-                message = str(decrypt(bytes(messagedata["content"], "UTF-8"), bytes(messagedata["aesKey"], "UTF-8")), "UTF-8")
-                message = self.processmessage.processMessage(message)
-                print("{0} | {1}".format(messagedata["sender"]["nickName"], message))
-                return
+            message = str(decrypt(bytes(messagedata["content"], "UTF-8"), bytes(messagedata["aesKey"], "UTF-8")), "UTF-8")
+            message = self.processmessage.processMessage(message)
+            print("{0} | {1}".format(messagedata["sender"]["nickName"], message))
+            return
         
         if messagedata["typeDescription"] == "WereDeletedEvent":
             print("The {0} deleted you from his friends.".format(messagedata["trigger"]["nickName"]))

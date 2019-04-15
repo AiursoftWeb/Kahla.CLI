@@ -1,9 +1,9 @@
 ![KahlaLogo](https://raw.githubusercontent.com/AiursoftWeb/Kahla.App/dev/src/assets/144x144.png)
 
 # Kahla.CLI
-Kahla for CLI. An implementation for Kahla API: [here](https://wiki.aiursoft.com/ReadDoc/Kahla/What%20is%20Kahla.md)
-
 [![Build status](https://aiursoft.visualstudio.com/Star/_apis/build/status/Kahla%20CLI%20CI)](https://aiursoft.visualstudio.com/Star/_build/latest?definitionId=9)
+
+Kahla for CLI. An implementation for Kahla API: [here](https://wiki.aiursoft.com/ReadDoc/Kahla/What%20is%20Kahla.md)
 
 ## How to Use
 View Help
