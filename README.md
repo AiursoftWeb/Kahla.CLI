@@ -91,6 +91,7 @@ $ kahla listen
 Before running, you need to install the dependencies
 ```bash
 $ pip install -r requirement.txt
+$ pip install -r devrequirement.txt
 ```
 
 You can run this project by running the following shell command:
