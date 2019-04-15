@@ -120,7 +120,7 @@ If you are a developer, you need to install devrequirement.txt
 This command depends on all the packages that need to be installed above
 
 ```bash
-./publishwindows.sh
+./publishforwindows.sh
 ```
 
 The files under the dist/Program/ directory are the compiled files
