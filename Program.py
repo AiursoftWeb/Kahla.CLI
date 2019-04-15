@@ -5,6 +5,7 @@ from flask import Flask
 from flask_script import Manager
 from flask_script import Command
 from Startup import Startup
+from platform import system
 
 app = Flask(__name__)
 manager = Manager(app)
