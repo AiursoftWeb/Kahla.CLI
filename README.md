@@ -96,6 +96,25 @@ You can run this project by running the following shell command:
 $ kahla xxxx
 ```
 
+## Project Dependencies
+We developed this using Python3.7 and recommend downloading the latest version of Python3.7 directly.
+
+Windows users also need to install the Python runtime when using executables
+
+## Project Support OS
+This project supports Windows Mac Linux.
+
+Currently, Mac and Linux only support bash scripting, and Windows supports exe executables
+
+## Project Dependencies SDK Download Address
+
+[Python 3.7](https://www.python.org/downloads/release/python-373/)
+
+Other packages use the pip installation directly.
+If you are a normal user, you only need to install requirement.txt. 
+
+If you are a developer, you need to install devrequirement.txt
+
 ## Document
 
 For more info please view [Kahla Wiki](https://wiki.aiursoft.com/ReadDoc/Kahla/What%20is%20Kahla.md)
