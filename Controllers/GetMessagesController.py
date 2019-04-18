@@ -20,17 +20,17 @@ class GetMessagesController(Controller):
 
     # 定义参数
     def get_options(self):
-	    return [
-			Option('-u', '--username', dest='username'),
-			Option('-t', '--take', dest='take')
-	    ]
+        return [
+            Option('-u', '--username', dest='username'),
+            Option('-t', '--take', dest='take')
+        ]
 
-	# 处理输入参数, 检查合法性
+    # 处理输入参数, 检查合法性
     def run(self, username, take):
         # 这条必须编写, 并且带上传入的参数
         self.compute(username, take)
 
-	# 处理业务逻辑
+    # 处理业务逻辑
     def main(self, username, take):
         if self.checkstatusservice.check() == True:
             friends = self.friendshipservice.Friends()
@@ -60,7 +60,7 @@ class GetMessagesController(Controller):
                         return datas
                     else:
                         return ["unknown error!"]
-			
+            
             return ["Your user name is incorrect!"]
         else:
             return ["You are not logged in!"]

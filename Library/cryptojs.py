@@ -29,11 +29,11 @@ def encrypt(message, passphrase):
     return base64.b64encode(b"Salted__" + salt + aes.encrypt(pad(message)))
 
 def decrypt(encrypted, passphrase):
-	encrypted = base64.b64decode(encrypted)
-	assert encrypted[0:8] == b"Salted__"
-	salt = encrypted[8:16]
-	key_iv = bytes_to_key(passphrase, salt, 32+16)
-	key = key_iv[:32]
-	iv = key_iv[32:]
-	aes = AES.new(key, AES.MODE_CBC, iv)
-	return unpad(aes.decrypt(encrypted[16:]))
+    encrypted = base64.b64decode(encrypted)
+    assert encrypted[0:8] == b"Salted__"
+    salt = encrypted[8:16]
+    key_iv = bytes_to_key(passphrase, salt, 32+16)
+    key = key_iv[:32]
+    iv = key_iv[32:]
+    aes = AES.new(key, AES.MODE_CBC, iv)
+    return unpad(aes.decrypt(encrypted[16:]))
