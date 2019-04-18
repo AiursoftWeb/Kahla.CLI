@@ -5,6 +5,7 @@ from Services.StorageCookieService import StorageCookieService
 from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
 from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
 from Services.KahlaConversationApiService import KahlaConversationApiService
+from Checks.SendChecker import SendChecker
 from Library.cryptojs import *
 import json
 
@@ -24,6 +25,7 @@ class SendController(Controller):
 
     # 处理输入参数, 检查合法性
     def run(self, username, message):
+        SendChecker.Check(username, message)
         # 这条必须编写, 并且带上传入的参数
         self.compute(username, message)
 

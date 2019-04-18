@@ -7,6 +7,7 @@ from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
 from Services.KahlaConversationApiService import KahlaConversationApiService
 from Services.KahlaAuthApiService import KahlaAuthApiService
 from Library.processmessage import ProcessMessage
+from Checks.GetMessagesChecker import GetMessagesChecker
 from Library.cryptojs import *
 import json
 
@@ -27,6 +28,7 @@ class GetMessagesController(Controller):
 
     # 处理输入参数, 检查合法性
     def run(self, username, take):
+        GetMessagesChecker.Check(username, take)
         # 这条必须编写, 并且带上传入的参数
         self.compute(username, take)
 
