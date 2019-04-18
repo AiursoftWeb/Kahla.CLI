@@ -4,6 +4,7 @@ from Services.KahlaAuthApiService import KahlaAuthApiService
 from Services.StorageCookieService import StorageCookieService
 from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
 from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
+from Checks.DeleteFriendsChecker import DeleteFriendsChecker
 from Library.cryptojs import *
 import json
 
@@ -20,6 +21,7 @@ class DeleteFriendsController(Controller):
 
     # 处理输入参数, 检查合法性
     def run(self, username):
+        DeleteFriendsChecker.Check(username)
         # 这条必须编写, 并且带上传入的参数
         self.compute(username)
 
