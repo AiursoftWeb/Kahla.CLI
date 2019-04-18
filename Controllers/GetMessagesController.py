@@ -22,7 +22,7 @@ class GetMessagesController(Controller):
     def get_options(self):
         return [
             Option('-u', '--username', dest='username'),
-            Option('-t', '--take', dest='take')
+            Option('-t', '--take', dest='take', default="15")
         ]
 
     # 处理输入参数, 检查合法性
