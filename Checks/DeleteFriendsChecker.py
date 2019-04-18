@@ -1,3 +1,5 @@
+import sys
+
 class DeleteFriendsChecker(object):
     
     @staticmethod
@@ -5,4 +7,4 @@ class DeleteFriendsChecker(object):
         if username == None:
             print("usage: kahla deletefriends [--username <username>]")
             print("simplified usage: kahla deletefriends [--u <username>]")
-            exit(1)
+            sys.exit(1)
