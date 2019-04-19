@@ -4,12 +4,14 @@ from Services.KahlaAuthApiService import KahlaAuthApiService
 from Services.StorageCookieService import StorageCookieService
 from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
 from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
+from Services.KahlaGroupApiService import KahlaGroupApiService
 from Library.cryptojs import *
 import json
 
 class LeaveGroupsController(Controller):
     def __init__(self):
         self.friendshipservice = KahlaFriendShipApiService()
+        self.groupservice = KahlaGroupApiService
         self.checkstatusservice = KahlaSignInStatusCheckService()
 
     # 定义参数
@@ -31,7 +33,7 @@ class LeaveGroupsController(Controller):
             for x in friendsdata:
                 if x["displayName"] == group:
                     if x["discriminator"] == "GroupConversation":
-                        self.friendshipservice.LeaveGroup(x["displayName"])
+                        self.groupservice.LeaveGroup(x["displayName"])
                         return ""
 
             return "The user name you entered is incorrect!"

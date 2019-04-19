@@ -3,12 +3,14 @@ from Library.Controller import Controller
 from Services.KahlaAuthApiService import KahlaAuthApiService
 from Services.StorageCookieService import StorageCookieService
 from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
+from Services.HomeFloderConfig import HomeFloderConfig
 import json
 import os
 
 class LogoutController(Controller):
     def __init__(self):
         self.checksignstatus = KahlaSignInStatusCheckService()
+        self.homeconfig = HomeFloderConfig()
 
     # 定义参数
     def get_options(self):
@@ -23,7 +25,7 @@ class LogoutController(Controller):
     def main(self):
         if self.checksignstatus.check() == True:
             try:
-                os.remove("./user.cookie.bin")
+                os.remove("{0}/user.cookie.bin".format(self.homeconfig.getconfigpath()))
                 return ""
             except:
                 return "You are not logged in!"
