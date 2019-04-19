@@ -4,12 +4,14 @@ from Services.KahlaAuthApiService import KahlaAuthApiService
 from Services.StorageCookieService import StorageCookieService
 from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
 from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
+from Services.KahlaGroupApiService import KahlaGroupApiService
 from Library.cryptojs import *
 import json
 
 class GroupsController(Controller):
     def __init__(self):
         self.friendshipservice = KahlaFriendShipApiService()
+        self.groupserivce = KahlaGroupApiService()
         self.checkstatusservice = KahlaSignInStatusCheckService()
 
     # 定义参数
@@ -28,8 +30,8 @@ class GroupsController(Controller):
             friendsdata = json.loads(friends.text)["items"]
             datas = []
             for x in friendsdata:
-                    if x["discriminator"] != "PrivateConversation":
-                        datas.append(x["displayName"])
+                if x["discriminator"] != "PrivateConversation":
+                    datas.append(x["displayName"])
             return datas
         else:
             return ["You are not logged in!"]

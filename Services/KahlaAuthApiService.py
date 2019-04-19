@@ -4,8 +4,6 @@ from Services.KahlaApiAddressService import KahlaApiAddressService
 from Services.StorageCookieService import StorageCookieService
 
 class KahlaAuthApiService(object):
-    apiaddress = None
-
     def __init__(self):
         self.apiaddress = KahlaApiAddressService()
         self.storagecookie = StorageCookieService()
@@ -21,5 +19,10 @@ class KahlaAuthApiService(object):
     def InitPusher(self):
         r = requests.get("{0}/Auth/InitPusher".format(self.apiaddress.getaddress()),
                         cookies=self.storagecookie.get())
+        
+        return r
+    
+    def Me(self):
+        r = requests.get("{0}/Auth/Me".format(self.apiaddress.getaddress()), cookies=self.storagecookie.get())
         
         return r
