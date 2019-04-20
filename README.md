@@ -134,6 +134,16 @@ This command requires all the packages above.
 
 The files under the `dist/Program/` directory are the compiled binarys.
 
+## How to build Linux Binary
+
+```bash
+$ ./publishforlinux.sh
+```
+
+This command requires all the packages above.
+
+The files under the `dist/Program/` directory are the compiled binarys.
+
 ## Document
 
 For more info please view [Kahla Wiki](https://wiki.aiursoft.com/ReadDoc/Kahla/What%20is%20Kahla.md).
