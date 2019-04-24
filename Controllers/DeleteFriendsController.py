@@ -32,12 +32,12 @@ class DeleteFriendsController(Controller):
             friendsdata = json.loads(friends.text)["items"]
             for x in friendsdata:
                 if x["displayName"] == username:
-                    r = self.friendshipservice.DeleteFriend(x["userId"])
+                    r = self.DeleteFriend(x["userId"])
                     r = json.loads(r.text)
                     if r["code"] == 0:
-                            return ""
+                        return ""
                     else:
-                            return r["message"]
+                        return r["message"]
 
             return "The user name you entered is incorrect!"
         else:
