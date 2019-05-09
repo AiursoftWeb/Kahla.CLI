@@ -7,11 +7,6 @@ class KahlaConversationApiService(object):
     def __init__(self):
         self.apiaddress = KahlaApiAddressService()
         self.storagecookie = StorageCookieService()
-    
-    def ConversationDetail(self, conversationid):
-        r = requests.get("{0}/Conversation/ConversationDetail?id={1}".format(self.apiaddress.getaddress(), str(conversationid)), cookies=self.storagecookie.get())
-
-        return r
 
     def SendMessage(self, conversationId, Message):
         r = requests.post("{0}/Conversation/SendMessage".format(self.apiaddress.getaddress()), 
@@ -29,12 +24,8 @@ class KahlaConversationApiService(object):
                                                                                 cookies=self.storagecookie.get())
 
         return r
+    
+    def ConversationDetail(self, conversationid):
+        r = requests.get("{0}/Conversation/ConversationDetail?id={1}".format(self.apiaddress.getaddress(), str(conversationid)), cookies=self.storagecookie.get())
 
-    def FileDownloadAddress(self, filekey):
-        r = requests.post("{0}/Files/FileDownloadAddress".format(self.apiaddress.getaddress()),
-                            data={
-                                "FileKey": filekey
-                            },
-                            cookies=self.storagecookie.get())
-        
         return r

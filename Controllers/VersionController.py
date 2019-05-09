@@ -1,13 +1,9 @@
 from flask_script import Option
-from Services.KahlaApiAddressService import KahlaApiAddressService
 from Library.Controller import Controller
+import json
+import requests
 
-class UseMasterController(Controller):
-    apiaddress = None
-
-    def __init__(self):
-        self.apiaddress = KahlaApiAddressService()
-
+class VersionController(Controller):
     # 定义参数
     def get_options(self):
         return []
@@ -19,5 +15,6 @@ class UseMasterController(Controller):
 
     # 处理业务逻辑
     def main(self):
-        self.apiaddress.usemaster()
-        return {}
+        r = requests.get("https://raw.githubusercontent.com/AiursoftWeb/Kahla.CLI/dev/package.json")
+        data = json.loads(r.text)
+        return data

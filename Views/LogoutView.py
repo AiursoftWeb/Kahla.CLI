@@ -1,2 +1,2 @@
 def Logout(data):
-	print(data)
+    print(data)

@@ -1,3 +1,3 @@
 def Groups(data):
-	for d in data:
-		print(d)
+    for d in data:
+        print(d)

@@ -3,13 +3,14 @@ from Library.cryptojs import *
 from Library.timeconvert import *
 from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
 from Services.KahlaConversationApiService import KahlaConversationApiService
+from Services.KahlaAuthApiService import KahlaAuthApiService
 from Library.processmessage import ProcessMessage
 import json
 
 class KahlaWebsocketListener(WebSocketClient):
     def received_message(self, message):
         self.processmessage = ProcessMessage()
-        self.kfs = KahlaFriendShipApiService()
+        self.kfs = KahlaAuthApiService()
         me = self.kfs.Me()
         me = json.loads(me.text)["value"]
         messagedata = json.loads(str(message))

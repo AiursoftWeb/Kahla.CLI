@@ -1,3 +1,3 @@
 def SearchFriends(data):
-	for d in data:
-		print(d)
+    for d in data:
+        print(d)
