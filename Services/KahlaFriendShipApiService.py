@@ -8,8 +8,8 @@ class KahlaFriendShipApiService(object):
         self.apiaddress = KahlaApiAddressService()
         self.storagecookie = StorageCookieService()
     
-    def Friends(self):
-        r = requests.get("{0}/Friendship/MyFriends?orderByName=true".format(self.apiaddress.getaddress()),
+    def Friends(self, take):
+        r = requests.get("{0}/Friendship/MyFriends?orderByName=true&Take={1}".format(self.apiaddress.getaddress(), take),
                    cookies=self.storagecookie.get())
         
         return r
