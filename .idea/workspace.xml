@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42beb062-27ca-4954-93d9-6a78448fc3fb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/package.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/VersionController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/VersionController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GlobalConfigs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/KahlaApiAddressService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/KahlaApiAddressService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/KahlaAuthApiService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/KahlaAuthApiService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/VersionView.py" beforeDir="false" afterPath="$PROJECT_DIR$/Views/VersionView.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/package.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +85,7 @@
         <entry file="file://$PROJECT_DIR$/package.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="20">
-              <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -168,21 +161,6 @@
               <item name="Kahla.CLI" type="b2602c69:ProjectViewProjectNode" />
               <item name="Kahla.CLI" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Kahla.CLI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kahla.CLI" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Kahla.CLI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kahla.CLI" type="462c0819:PsiDirectoryNode" />
-              <item name="Services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Kahla.CLI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Kahla.CLI" type="462c0819:PsiDirectoryNode" />
-              <item name="Views" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -240,12 +218,12 @@
       <workItem from="1557267063687" duration="4000" />
       <workItem from="1557407515978" duration="917000" />
       <workItem from="1557830527723" duration="2661000" />
-      <workItem from="1558063427285" duration="1570000" />
+      <workItem from="1558063427285" duration="1682000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5157000" />
+    <option name="totallyTimeSpent" value="5269000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -510,7 +488,7 @@
     <entry file="file://$PROJECT_DIR$/package.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
         </state>
       </provider>
     </entry>
