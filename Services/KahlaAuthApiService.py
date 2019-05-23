@@ -7,7 +7,12 @@ class KahlaAuthApiService(object):
     def __init__(self):
         self.apiaddress = KahlaApiAddressService()
         self.storagecookie = StorageCookieService()
-    
+
+    def Version(self):
+        r = requests.get("{0}/Auth/Version".format(self.apiaddress.getaddress()))
+
+        return r
+
     def AuthByPassword(self, email, password):
         r = requests.post("{0}/Auth/AuthByPassword".format(self.apiaddress.getaddress()), data={
             "Email": email,

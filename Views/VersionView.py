@@ -1,9 +1,7 @@
-import GlobalConfigs
-
 def Version(data):
     print("Current Kahla Version is: {0}".format(data["version"]))
-    print("Local Kahla Version is {0}".format(GlobalConfigs.CurrentVersion))
-    if data["version"] == GlobalConfigs.CurrentVersion:
-        print("You're running the latest Kahla CLI.")
+
+    if data["latestVersion"] == data["version"]:
+        print("Kahla CLI is the latest version")
     else:
-        print("You're running an old Kahla CLI.")
+        print("Your Kahla CLI is not the latest version")

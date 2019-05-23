@@ -2,8 +2,13 @@ from flask_script import Option
 from Library.Controller import Controller
 import json
 import requests
+from Services.KahlaAuthApiService import KahlaAuthApiService
+from package import version
 
 class VersionController(Controller):
+    def __init__(self):
+        self.authapiservice = KahlaAuthApiService()
+
     # 定义参数
     def get_options(self):
         return []
@@ -15,6 +20,8 @@ class VersionController(Controller):
 
     # 处理业务逻辑
     def main(self):
-        r = requests.get("https://raw.githubusercontent.com/AiursoftWeb/Kahla.CLI/dev/package.json")
-        data = json.loads(r.text)
+        data = {}
+        data["version"] = version
+        d = self.authapiservice.Version()
+        data["latestVersion"] = json.loads(d.text)["latestVersion"]
         return data

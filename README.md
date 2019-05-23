@@ -89,6 +89,11 @@ Listen to the message
 $ kahla listen
 ```
 
+Get Current Version
+```bash
+$ kahla version
+```
+
 ## How to run
 
 Before running, you need to install the dependencies:
