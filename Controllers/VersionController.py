@@ -1,13 +1,12 @@
-from flask_script import Option
 from Library.Controller import Controller
 import json
-import requests
-from Services.KahlaAuthApiService import KahlaAuthApiService
+from Services.AuthApiService import AuthApiService
 from package import version
+
 
 class VersionController(Controller):
     def __init__(self):
-        self.authapiservice = KahlaAuthApiService()
+        self.authapiservice = AuthApiService()
 
     # 定义参数
     def get_options(self):
