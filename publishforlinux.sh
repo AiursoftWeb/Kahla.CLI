@@ -7,4 +7,5 @@ cp -r ./Library ./dist/Program/
 cp -r ./Listener ./dist/Program/
 cp -r ./Services ./dist/Psrogram/
 cp -r ./Views ./dist/Program/
+cp -r ./package.py ./dist/Program/package.py
 mv ./dist/Program/Program ./dist/Program/kahla
