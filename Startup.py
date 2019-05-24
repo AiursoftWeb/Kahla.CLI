@@ -1,6 +1,4 @@
 from Controllers.LoginController import LoginController
-from Controllers.UseStaggingController import UseStaggingController
-from Controllers.UseMasterController import UseMasterController
 from Controllers.LogoutController import LogoutController
 from Controllers.FriendsController import FriendsController
 from Controllers.SearchFriendsController import SearchFriendsController
@@ -19,10 +17,6 @@ class Startup(object):
     
     @staticmethod
     def ConfigureRouting(routes):
-        # kahla usestagging
-        routes.add_command("usestagging", UseStaggingController())
-        # kahla usemaster
-        routes.add_command("usemaster", UseMasterController())
         # kahla login
         routes.add_command("login", LoginController())
         # kahla logout
