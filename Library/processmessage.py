@@ -1,10 +1,10 @@
-from Services.KahlaConversationApiService import KahlaConversationApiService
+from Services.ConversationApiService import ConversationApiService
 import json
 
 
 class ProcessMessage(object):
     def __init__(self):
-        self.conversionservice = KahlaConversationApiService()
+        self.conversionservice = ConversationApiService()
 
     def processMessage(self, message):
         if message.find("[img]") >= 0:

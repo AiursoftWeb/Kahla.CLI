@@ -1,9 +1,7 @@
 from ws4py.client.threadedclient import WebSocketClient
-from Library.cryptojs import *
-from Library.timeconvert import *
-from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
-from Services.KahlaConversationApiService import KahlaConversationApiService
-from Services.KahlaAuthApiService import KahlaAuthApiService
+from Library.cryptojs import decrypt
+from Library.timeconvert import second2time
+from Services.AuthApiService import AuthApiService
 from Library.processmessage import ProcessMessage
 import json
 
@@ -11,7 +9,7 @@ import json
 class KahlaWebsocketListener(WebSocketClient):
     def received_message(self, message):
         self.processmessage = ProcessMessage()
-        self.kfs = KahlaAuthApiService()
+        self.kfs = AuthApiService()
         me = self.kfs.Me()
         me = json.loads(me.text)["value"]
         messagedata = json.loads(str(message))

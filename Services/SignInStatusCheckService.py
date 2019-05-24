@@ -1,23 +1,23 @@
 from Services.StorageCookieService import StorageCookieService
-from Services.KahlaApiAddressService import KahlaApiAddressService
+from Services.ApiAddressService import ApiAddressService
 from Services.HomeFloderConfig import HomeFloderConfig
 import os
 import requests
 import json
 
 
-class KahlaSignInStatusCheckService(object):
+class SignInStatusCheckService(object):
     def __init__(self):
         self.storagecookie = StorageCookieService()
-        self.apiaddress = KahlaApiAddressService()
+        self.apiaddress = ApiAddressService()
 
     def check(self):
         if os.path.exists(
-                "{0}/user.cookie.bin".format(HomeFloderConfig().getconfigpath())) == True:
+                "{0}/user.cookie.bin".format(HomeFloderConfig().getconfigpath())):
             cookies = self.storagecookie.get()
             result = json.loads(requests.post("{0}/Auth/SignInStatus".format(self.apiaddress.getaddress()),
                                               cookies=cookies).text)
-            if result["value"] == True:
+            if result["value"]:
                 return True
             else:
                 return False

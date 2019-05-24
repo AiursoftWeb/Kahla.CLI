@@ -1,8 +1,7 @@
 from flask_script import Option
 from Library.Controller import Controller
-from Services.KahlaAuthApiService import KahlaAuthApiService
+from Services.AuthApiService import AuthApiService
 from Services.StorageCookieService import StorageCookieService
-from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
 from Checks.LoginChecker import LoginChecker
 import json
 
@@ -12,7 +11,7 @@ class LoginController(Controller):
     storagecookie = None
 
     def __init__(self):
-        self.authapiservice = KahlaAuthApiService()
+        self.authapiservice = AuthApiService()
         self.storagecookie = StorageCookieService()
 
     # 定义参数

@@ -1,12 +1,11 @@
 import requests
-import json
-from Services.KahlaApiAddressService import KahlaApiAddressService
+from Services.ApiAddressService import ApiAddressService
 from Services.StorageCookieService import StorageCookieService
 
 
-class KahlaConversationApiService(object):
+class ConversationApiService(object):
     def __init__(self):
-        self.apiaddress = KahlaApiAddressService()
+        self.apiaddress = ApiAddressService()
         self.storagecookie = StorageCookieService()
 
     def SendMessage(self, conversationId, Message):

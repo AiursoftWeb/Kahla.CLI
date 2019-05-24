@@ -11,5 +11,5 @@ class HomeFloderConfig(object):
         return self.configpath
 
     def mkdirconfigpath(self):
-        if path.exists(self.configpath) != True:
+        if path.exists(self.configpath) is False:
             mkdir(self.configpath)
