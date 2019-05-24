@@ -9,6 +9,8 @@ class Controller(Command):
         module = import_module(
             "Views.{}".format(
                 "{}View".format(conrollername)))
+        result = result
+        module = module
         eval("module.{}(result)".format(conrollername))
 
     def main(self):
