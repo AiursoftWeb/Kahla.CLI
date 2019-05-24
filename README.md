@@ -135,6 +135,8 @@ Other packages use the pip installation directly.
 $ ./publishforwindows.sh
 ```
 
+You can run tools/generateversion.py to get package.py.
+
 This command requires all the packages above.
 
 The files under the `dist/Program/` directory are the compiled binarys.
