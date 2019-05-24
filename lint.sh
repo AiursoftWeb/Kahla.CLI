@@ -1,0 +1,2 @@
+pyflakes */*.py
+pyflakes *.py
