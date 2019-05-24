@@ -36,14 +36,21 @@ class SendController(Controller):
             friendsdata = json.loads(friends.text)["items"]
             for x in friendsdata:
                 if x['displayName'] == username:
-                    message = encrypt(bytes(message, "utf-8"), bytes(x["aesKey"], "utf-8"))
-                    r = self.conversionservice.SendMessage(x['conversationId'], message)
+                    message = encrypt(
+                        bytes(
+                            message,
+                            "utf-8"),
+                        bytes(
+                            x["aesKey"],
+                            "utf-8"))
+                    r = self.conversionservice.SendMessage(
+                        x['conversationId'], message)
                     resultdata = json.loads(r.text)
                     if resultdata["code"] == 0:
                         return ""
                     else:
                         return "The message could not be sent successfully!"
-            
+
             return "Your user name is incorrect!"
         else:
             return "You are not logged in!"

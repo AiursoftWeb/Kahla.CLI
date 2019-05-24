@@ -6,6 +6,7 @@ from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
 from Checks.LoginChecker import LoginChecker
 import json
 
+
 class LoginController(Controller):
     authapiservice = None
     storagecookie = None

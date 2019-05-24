@@ -8,6 +8,7 @@ from Checks.DeleteFriendsChecker import DeleteFriendsChecker
 from Library.cryptojs import *
 import json
 
+
 class DeleteFriendsController(Controller):
     def __init__(self):
         self.friendshipservice = KahlaFriendShipApiService()
@@ -16,7 +17,7 @@ class DeleteFriendsController(Controller):
     # 定义参数
     def get_options(self):
         return [
-            Option('-u', '--username', dest='username'),    
+            Option('-u', '--username', dest='username'),
         ]
 
     # 处理输入参数, 检查合法性

@@ -5,6 +5,7 @@ import requests
 from Services.KahlaAuthApiService import KahlaAuthApiService
 from package import version
 
+
 class VersionController(Controller):
     def __init__(self):
         self.authapiservice = KahlaAuthApiService()

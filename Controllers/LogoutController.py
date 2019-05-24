@@ -7,6 +7,7 @@ from Services.HomeFloderConfig import HomeFloderConfig
 import json
 import os
 
+
 class LogoutController(Controller):
     def __init__(self):
         self.checksignstatus = KahlaSignInStatusCheckService()
@@ -25,9 +26,10 @@ class LogoutController(Controller):
     def main(self):
         if self.checksignstatus.check() == True:
             try:
-                os.remove("{0}/user.cookie.bin".format(self.homeconfig.getconfigpath()))
+                os.remove(
+                    "{0}/user.cookie.bin".format(self.homeconfig.getconfigpath()))
                 return ""
-            except:
+            except BaseException:
                 return "You are not logged in!"
         else:
             return "You are not logged in!"

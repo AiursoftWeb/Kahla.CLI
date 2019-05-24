@@ -8,6 +8,7 @@ from Services.KahlaGroupApiService import KahlaGroupApiService
 from Library.cryptojs import *
 import json
 
+
 class LeaveGroupsController(Controller):
     def __init__(self):
         self.friendshipservice = KahlaFriendShipApiService()
@@ -17,7 +18,7 @@ class LeaveGroupsController(Controller):
     # 定义参数
     def get_options(self):
         return [
-            Option('-g', '--group', dest='group'),  
+            Option('-g', '--group', dest='group'),
         ]
 
     # 处理输入参数, 检查合法性

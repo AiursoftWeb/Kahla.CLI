@@ -11,10 +11,11 @@ from Controllers.SearchGroupsController import SearchGroupsController
 from Controllers.ListenController import ListenController
 from Controllers.VersionController import VersionController
 
+
 class Startup(object):
     def __init__(self):
         pass
-    
+
     @staticmethod
     def ConfigureRouting(routes):
         # kahla login

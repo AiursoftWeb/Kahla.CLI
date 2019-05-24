@@ -8,6 +8,7 @@ from Checks.SearchGroupsChecker import SearchGroupsChecker
 from Library.cryptojs import *
 import json
 
+
 class SearchGroupsController(Controller):
     def __init__(self):
         self.friendshipservice = KahlaFriendShipApiService()
@@ -16,7 +17,7 @@ class SearchGroupsController(Controller):
     # 定义参数
     def get_options(self):
         return [
-            Option('-si', '--searchinput', dest='searchinput'), 
+            Option('-si', '--searchinput', dest='searchinput'),
         ]
 
     # 处理输入参数, 检查合法性

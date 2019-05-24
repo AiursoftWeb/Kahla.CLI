@@ -6,6 +6,7 @@ from Library.Controller import Controller
 from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
 import json
 
+
 class ListenController(Controller):
     def __init__(self):
         self.apiaddress = KahlaApiAddressService()

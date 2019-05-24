@@ -8,6 +8,7 @@ from Services.KahlaGroupApiService import KahlaGroupApiService
 from Library.cryptojs import *
 import json
 
+
 class GroupsController(Controller):
     def __init__(self):
         self.friendshipservice = KahlaFriendShipApiService()

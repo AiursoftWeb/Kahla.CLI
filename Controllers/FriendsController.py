@@ -8,6 +8,7 @@ from Library.cryptojs import *
 from sys import maxsize
 import json
 
+
 class FriendsController(Controller):
     def __init__(self):
         self.friendshipservice = KahlaFriendShipApiService()
