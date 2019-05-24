@@ -1,2 +1,2 @@
 pyinstaller
-flake8
+pyflakes
