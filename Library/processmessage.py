@@ -8,12 +8,12 @@ class ProcessMessage(object):
     def processMessage(self, message):
         if message.find("[img]") >= 0:
             message = message.split("]")[1].split("-")[0]
-            message = "Photo | https://oss.aiursoft.com/download/fromkey/{0}".format(message)
+            message = "Photo | https://ossendpoint.azureedge.net/download/fromkey/{0}".format(message)
             return message
         
         if message.find("[video]") >= 0:
             message = message.split("]")[1]
-            message = "Video | https://oss.aiursoft.com/download/fromkey/{0}".format(message)
+            message = "Video | https://ossendpoint.azureedge.net/download/fromkey/{0}".format(message)
             return message
 
         if message.find("[file]") >= 0:
