@@ -7,9 +7,6 @@ import json
 
 
 class LoginController(Controller):
-    authapiservice = None
-    storagecookie = None
-
     def __init__(self):
         self.authapiservice = AuthApiService()
         self.storagecookie = StorageCookieService()

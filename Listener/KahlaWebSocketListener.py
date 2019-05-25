@@ -9,8 +9,8 @@ import json
 class KahlaWebsocketListener(WebSocketClient):
     def received_message(self, message):
         self.processmessage = ProcessMessage()
-        self.kfs = AuthApiService()
-        me = self.kfs.Me()
+        self.authservice = AuthApiService()
+        me = self.authservice.Me()
         me = json.loads(me.text)["value"]
         messagedata = json.loads(str(message))
         if messagedata["typeDescription"] == "NewMessage":
