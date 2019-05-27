@@ -22,5 +22,5 @@ class VersionController(Controller):
         data = {}
         data["version"] = version
         d = self.authapiservice.Version()
-        data["latestVersion"] = json.loads(d.text)["latestVersion"]
+        data["latestVersion"] = json.loads(d.text)["LatestCLIVersion"]
         return data
