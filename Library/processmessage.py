@@ -1,10 +1,10 @@
-from Services.ConversationApiService import ConversationApiService
+from Services.FileApiService import FileApiService
 import json
 
 
 class ProcessMessage(object):
     def __init__(self):
-        self.conversionservice = ConversationApiService()
+        self.fileservice = FileApiService()
 
     def processMessage(self, message):
         if message.find("[img]") >= 0:
@@ -21,7 +21,7 @@ class ProcessMessage(object):
 
         if message.find("[file]") >= 0:
             data = message.split("]")[1].split("-")
-            fileuri = self.conversionservice.FileDownloadAddress(data[0])
+            fileuri = self.fileservice.FileDownloadAddress(data[0])
             fileuri = json.loads(fileuri.text)
             fileuri = fileuri["downloadPath"]
             message = "File | {2} | {0} | {1}".format(
@@ -30,7 +30,7 @@ class ProcessMessage(object):
 
         if message.find("[audio]") >= 0:
             audiokey = message.split("]")[1]
-            audiouri = self.conversionservice.FileDownloadAddress(audiokey)
+            audiouri = self.fileservice.FileDownloadAddress(audiokey)
             audiouri = json.loads(audiouri.text)
             audiouri = audiouri["downloadPath"]
             audiouri = audiouri.replace("audio", "audio.ogg")
