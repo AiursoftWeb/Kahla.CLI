@@ -3,6 +3,7 @@
 # Kahla.CLI
 
 [![Build status](https://aiursoft.visualstudio.com/Star/_apis/build/status/Kahla%20CLI%20CI)](https://aiursoft.visualstudio.com/Star/_build/latest?definitionId=9)
+[![Deploy status](https://vsrm.dev.azure.com/aiursoft/_apis/public/Release/badge/581b61e3-e075-4a19-9364-449a9c93ada8/9/26)]
 
 Kahla for CLI. An implementation for Kahla API: [here](https://wiki.aiursoft.com/ReadDoc/Kahla/What%20is%20Kahla.md)
 
