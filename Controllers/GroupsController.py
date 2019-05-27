@@ -15,7 +15,7 @@ class GroupsController(Controller):
     # 定义参数
     def get_options(self):
         return [
-            Option('-t', '--take', dest='take', default="10000")
+            Option('-t', '--take', dest='take', default="65535")
         ]
 
     # 处理输入参数, 检查合法性

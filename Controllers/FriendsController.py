@@ -13,7 +13,7 @@ class FriendsController(Controller):
     # 定义参数
     def get_options(self):
         return [
-            Option('-t', '--take', dest='take', default="10000")
+            Option('-t', '--take', dest='take', default="65535")
         ]
 
     # 处理输入参数, 检查合法性
@@ -29,7 +29,7 @@ class FriendsController(Controller):
             datas = []
             for x in friendsdata:
                 if x["discriminator"] != "GroupConversation":
-                    datas.append(x["displayName"])
+                   datas.append(x["displayName"])
             return datas
         else:
             return ["You are not logged in!"]
