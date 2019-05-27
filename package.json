@@ -1,0 +1,18 @@
+{
+    "name": "Kahla.CLI",
+    "version": "3.3.1",
+    "stable": "False",
+    "author": "Aiursoft <postmaster@aiursoft.com> (https://www.aiursoft.com/)",
+    "contributors": [
+        "Anduin@aiursoft.com",
+        "xxyzz@aiursoft.com",
+        "EdgeNeko@aiursoft.com",
+        "2539820590@qq.com",
+        "l2dy@macports.org"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AiursoftWeb/Kahla.CLI.git"
+    }
+}

@@ -1,22 +1,19 @@
 from flask_script import Option
 from Library.Controller import Controller
-from Services.KahlaAuthApiService import KahlaAuthApiService
-from Services.StorageCookieService import StorageCookieService
-from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
-from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
-from Library.cryptojs import *
-from sys import maxsize
+from Services.SignInStatusCheckService import SignInStatusCheckService
+from Services.FriendShipApiService import FriendShipApiService
 import json
+
 
 class FriendsController(Controller):
     def __init__(self):
-        self.friendshipservice = KahlaFriendShipApiService()
-        self.checkstatusservice = KahlaSignInStatusCheckService()
+        self.friendshipservice = FriendShipApiService()
+        self.checkstatusservice = SignInStatusCheckService()
 
     # 定义参数
     def get_options(self):
         return [
-            Option('-t', '--take', dest='take', default=str(maxsize))
+            Option('-t', '--take', dest='take', default="65535")
         ]
 
     # 处理输入参数, 检查合法性
@@ -26,13 +23,13 @@ class FriendsController(Controller):
 
     # 处理业务逻辑
     def main(self, take):
-        if self.checkstatusservice.check() == True:
+        if self.checkstatusservice.check():
             friends = self.friendshipservice.Friends(take)
             friendsdata = json.loads(friends.text)["items"]
             datas = []
             for x in friendsdata:
                 if x["discriminator"] != "GroupConversation":
-                    datas.append(x["displayName"])
+                   datas.append(x["displayName"])
             return datas
         else:
             return ["You are not logged in!"]

@@ -1,15 +1,12 @@
-from flask_script import Option
 from Library.Controller import Controller
-from Services.KahlaAuthApiService import KahlaAuthApiService
-from Services.StorageCookieService import StorageCookieService
-from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
+from Services.SignInStatusCheckService import SignInStatusCheckService
 from Services.HomeFloderConfig import HomeFloderConfig
-import json
 import os
+
 
 class LogoutController(Controller):
     def __init__(self):
-        self.checksignstatus = KahlaSignInStatusCheckService()
+        self.checksignstatus = SignInStatusCheckService()
         self.homeconfig = HomeFloderConfig()
 
     # 定义参数
@@ -23,11 +20,12 @@ class LogoutController(Controller):
 
     # 处理业务逻辑
     def main(self):
-        if self.checksignstatus.check() == True:
+        if self.checksignstatus.check():
             try:
-                os.remove("{0}/user.cookie.bin".format(self.homeconfig.getconfigpath()))
+                os.remove(
+                    "{0}/user.cookie.bin".format(self.homeconfig.getconfigpath()))
                 return ""
-            except:
+            except BaseException:
                 return "You are not logged in!"
         else:
             return "You are not logged in!"

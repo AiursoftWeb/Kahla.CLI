@@ -1,20 +1,18 @@
 from flask_script import Option
 from Library.Controller import Controller
-from Services.KahlaAuthApiService import KahlaAuthApiService
-from Services.StorageCookieService import StorageCookieService
-from Services.KahlaSignInStatusCheckService import KahlaSignInStatusCheckService
-from Services.KahlaFriendShipApiService import KahlaFriendShipApiService
-from Services.KahlaConversationApiService import KahlaConversationApiService
+from Services.SignInStatusCheckService import SignInStatusCheckService
+from Services.FriendShipApiService import FriendShipApiService
+from Services.ConversationApiService import ConversationApiService
 from Checks.SendChecker import SendChecker
-from Library.cryptojs import *
+from Library.cryptojs import encrypt
 import json
 
 
 class SendController(Controller):
     def __init__(self):
-        self.friendshipservice = KahlaFriendShipApiService()
-        self.checkstatusservice = KahlaSignInStatusCheckService()
-        self.conversionservice = KahlaConversationApiService()
+        self.friendshipservice = FriendShipApiService()
+        self.checkstatusservice = SignInStatusCheckService()
+        self.conversionservice = ConversationApiService()
 
     # 定义参数
     def get_options(self):
@@ -31,19 +29,26 @@ class SendController(Controller):
 
     # 处理业务逻辑
     def main(self, username, message):
-        if self.checkstatusservice.check() == True:
+        if self.checkstatusservice.check():
             friends = self.friendshipservice.Friends()
             friendsdata = json.loads(friends.text)["items"]
             for x in friendsdata:
                 if x['displayName'] == username:
-                    message = encrypt(bytes(message, "utf-8"), bytes(x["aesKey"], "utf-8"))
-                    r = self.conversionservice.SendMessage(x['conversationId'], message)
+                    message = encrypt(
+                        bytes(
+                            message,
+                            "utf-8"),
+                        bytes(
+                            x["aesKey"],
+                            "utf-8"))
+                    r = self.conversionservice.SendMessage(
+                        x['conversationId'], message)
                     resultdata = json.loads(r.text)
                     if resultdata["code"] == 0:
                         return ""
                     else:
                         return "The message could not be sent successfully!"
-            
+
             return "Your user name is incorrect!"
         else:
             return "You are not logged in!"
