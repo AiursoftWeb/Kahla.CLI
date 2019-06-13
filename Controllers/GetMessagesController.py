@@ -33,7 +33,7 @@ class GetMessagesController(Controller):
     # 处理业务逻辑
     @loginchecker
     def main(self, username, take):
-        friends = self.friendshipservice.Friends()
+        friends = self.conversionservice.All()
         friendsdata = json.loads(friends.text)["items"]
         datas = []
         for x in friendsdata:

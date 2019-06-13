@@ -27,12 +27,11 @@ class SearchFriendsController(Controller):
     # 处理业务逻辑
     @loginchecker
     def main(self, searchinput):
-        friends = self.friendshipservice.Friends()
-        friendslist = json.loads(friends.text)["items"]
+        mines = self.friendshipservice.Mine()
+        friendslist = json.loads(mines.text)["users"]
         datas = []
         for x in friendslist:
-            if x["displayName"].lower().find(searchinput.lower()) >= 0:
-                if x["discriminator"] != "GroupConversation":
-                    datas.append("{0}".format(x["displayName"]))
+            if x["nickName"].lower().find(searchinput.lower()) >= 0:
+                datas.append(x["nickName"])
         
         return datas

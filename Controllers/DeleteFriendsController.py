@@ -25,11 +25,15 @@ class DeleteFriendsController(Controller):
     # 处理业务逻辑
     @loginchecker
     def main(self, username):
-        friendslist = self.friendshipservice.Friends()
-        friendslist = json.loads(friendslist.text)["items"]
-        for x in friendslist:
-            if x["displayName"] == username:
-                err = self.DeleteFriend(x["userId"])
+        mines = self.friendshipservice.Mine()
+        friendslist = json.loads(mines.text)
+        if friendslist["code"] == 0:
+            return ""
+        else:
+            return friendslist["message"]
+        for x in friendslist["users"]:
+            if x["nickName"] == username:
+                err = self.friendshipservice.DeleteFriend(x["userId"])
                 err = json.loads(err.text)
                 if err["code"] == 0:
                     return ""

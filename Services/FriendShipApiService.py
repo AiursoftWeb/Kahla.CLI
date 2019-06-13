@@ -8,8 +8,8 @@ class FriendShipApiService(object):
         self.apiaddress = ApiAddressService()
         self.storagecookie = StorageCookieService()
 
-    def Friends(self):
-        return requests.get("{0}/Conversation/All".format(self.apiaddress.getaddress()),
+    def Mine(self):
+        return requests.get("{0}/Friendship/Mine".format(self.apiaddress.getaddress()),
                          cookies=self.storagecookie.get())
 
     def UserDetail(self, userid):
