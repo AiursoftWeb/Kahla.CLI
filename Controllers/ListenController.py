@@ -2,7 +2,6 @@ from Services.ApiAddressService import ApiAddressService
 from Services.AuthApiService import AuthApiService
 from Listener.KahlaWebSocketListener import KahlaWebsocketListener
 from Library.Controller import Controller
-from Services.SignInStatusCheckService import SignInStatusCheckService
 import json
 from Decorators.LoginStatusCheckDecorator import loginchecker
 

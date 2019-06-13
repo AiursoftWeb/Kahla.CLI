@@ -1,6 +1,5 @@
 from flask_script import Option
 from Library.Controller import Controller
-from Services.SignInStatusCheckService import SignInStatusCheckService
 from Services.FriendShipApiService import FriendShipApiService
 from Services.GroupApiService import GroupApiService
 import json

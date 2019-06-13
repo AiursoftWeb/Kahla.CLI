@@ -1,5 +1,4 @@
 from Library.Controller import Controller
-from Services.SignInStatusCheckService import SignInStatusCheckService
 from Services.FriendShipApiService import FriendShipApiService
 import json
 from Decorators.LoginStatusCheckDecorator import loginchecker

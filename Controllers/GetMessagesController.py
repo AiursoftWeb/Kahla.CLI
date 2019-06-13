@@ -1,7 +1,6 @@
 from flask_script import Option
 from Library.Controller import Controller
 from Services.AuthApiService import AuthApiService
-from Services.SignInStatusCheckService import SignInStatusCheckService
 from Services.FriendShipApiService import FriendShipApiService
 from Services.ConversationApiService import ConversationApiService
 from Library.processmessage import ProcessMessage
