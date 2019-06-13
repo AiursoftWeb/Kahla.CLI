@@ -26,10 +26,10 @@ class LoginController(Controller):
 
     # 处理业务逻辑
     def main(self, email, password):
-        siginresult = self.authapiservice.AuthByPassword(email, password)
-        siginresultdict = dict(json.loads(siginresult.text))
-        if siginresultdict["code"] == 0:
-            self.storagecookie.storage(siginresult.cookies)
+        result = self.authapiservice.AuthByPassword(email, password)
+        err = json.loads(result.text)
+        if err["code"] == 0:
+            self.storagecookie.storage(result.cookies)
             return ""
         else:
-            return siginresultdict["message"]
+            return err["message"]

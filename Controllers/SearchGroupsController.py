@@ -4,6 +4,7 @@ from Services.SignInStatusCheckService import SignInStatusCheckService
 from Services.FriendShipApiService import FriendShipApiService
 from Checks.SearchGroupsChecker import SearchGroupsChecker
 import json
+from Decorators.LoginStatusCheckDecorator import loginchecker
 
 
 class SearchGroupsController(Controller):
@@ -24,16 +25,14 @@ class SearchGroupsController(Controller):
         self.compute(searchinput)
 
     # 处理业务逻辑
+    @loginchecker
     def main(self, searchinput):
-        if self.checkstatusservice.check():
-            friends = self.friendshipservice.Friends()
-            friendsdata = json.loads(friends.text)["items"]
-            datas = []
-            for x in friendsdata:
-                if x["displayName"].lower().find(searchinput.lower()) >= 0:
-                    if x["discriminator"] != "PrivateConversation":
-                        pingdata = "{0}".format(x["displayName"])
-                        datas.append(pingdata)
-            return datas
-        else:
-            return ["You are not logged in!"]
+        friends = self.friendshipservice.Friends()
+        friendslist = json.loads(friends.text)["items"]
+        datas = []
+        for x in friendslist:
+            if x["displayName"].lower().find(searchinput.lower()) >= 0:
+                if x["discriminator"] != "PrivateConversation":
+                    datas.append("{0}".format(x["displayName"]))
+        
+        return datas

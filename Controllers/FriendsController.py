@@ -1,14 +1,12 @@
-from flask_script import Option
 from Library.Controller import Controller
 from Services.SignInStatusCheckService import SignInStatusCheckService
 from Services.FriendShipApiService import FriendShipApiService
 import json
-
+from Decorators.LoginStatusCheckDecorator import loginchecker
 
 class FriendsController(Controller):
     def __init__(self):
         self.friendshipservice = FriendShipApiService()
-        self.checkstatusservice = SignInStatusCheckService()
 
     # 定义参数
     def get_options(self):
@@ -20,14 +18,12 @@ class FriendsController(Controller):
         self.compute()
     
     # 处理业务逻辑
+    @loginchecker
     def main(self):
-        if self.checkstatusservice.check():
-            friends = self.friendshipservice.Friends()
-            friendsdata = json.loads(friends.text)["items"]
-            datas = []
-            for x in friendsdata:
-                if x["discriminator"] != "GroupConversation":
-                   datas.append(x["displayName"])
-            return datas
-        else:
-            return ["You are not logged in!"]
+        friends = self.friendshipservice.Friends()
+        friendslist = json.loads(friends.text)["items"]
+        datas = []
+        for x in friendslist:
+            if x["discriminator"] != "GroupConversation":
+                datas.append(x["displayName"])
+        return datas
