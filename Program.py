@@ -10,10 +10,13 @@ app = Flask(__name__)
 manager = Manager(app)
 configpath = HomeFloderConfig()
 
-# Seed Config Path
-configpath.mkdirconfigpath()
-# Configure Routing
-Startup.ConfigureRouting(manager)
+def main():
+    # Seed Config Path
+    configpath.mkdirconfigpath()
+    # Configure Routing
+    Startup.ConfigureRouting(manager)
+    # Start Application
+    manager.run()
 
 if __name__ == "__main__":
-    manager.run()
+    main()

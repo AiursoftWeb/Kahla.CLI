@@ -2,15 +2,14 @@ from Services.ApiAddressService import ApiAddressService
 from Services.AuthApiService import AuthApiService
 from Listener.KahlaWebSocketListener import KahlaWebsocketListener
 from Library.Controller import Controller
-from Services.SignInStatusCheckService import SignInStatusCheckService
 import json
+from Decorators.LoginStatusCheckDecorator import loginchecker
 
 
 class ListenController(Controller):
     def __init__(self):
         self.apiaddress = ApiAddressService()
         self.authapiservice = AuthApiService()
-        self.checkstatusservice = SignInStatusCheckService()
 
     # 定义参数
     def get_options(self):
@@ -22,10 +21,12 @@ class ListenController(Controller):
         self.compute()
 
     # 处理业务逻辑
+    @loginchecker
     def main(self):
-        if self.checkstatusservice.check():
-            r = json.loads(self.authapiservice.InitPusher().text)
-            self.listenerkahla = KahlaWebsocketListener(r["serverPath"])
+        err = self.authapiservice.InitPusher()
+        err = json.loads(err.text)
+        if err["code"] == 0:
+            self.listenerkahla = KahlaWebsocketListener(err["serverPath"])
             self.listenerkahla.connect()
             try:
                 self.listenerkahla.run_forever()
@@ -34,4 +35,4 @@ class ListenController(Controller):
                 self.listenerkahla.close()
                 return ""
         else:
-            return "You are not logged in!"
+            return err["message"]

@@ -9,10 +9,6 @@ class FileApiService(object):
         self.storagecookie = StorageCookieService()
 
     def FileDownloadAddress(self, filekey):
-        r = requests.post("{0}/Files/FileDownloadAddress".format(self.apiaddress.getaddress()),
-                          data={
-            "FileKey": filekey
-        },
-            cookies=self.storagecookie.get())
-
-        return r
+        return requests.post("{0}/Files/FileDownloadAddress".format(self.apiaddress.getaddress()), data={
+                "FileKey": filekey
+            }, cookies=self.storagecookie.get())

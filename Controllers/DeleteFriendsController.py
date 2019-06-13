@@ -1,15 +1,14 @@
 from flask_script import Option
 from Library.Controller import Controller
-from Services.SignInStatusCheckService import SignInStatusCheckService
 from Services.FriendShipApiService import FriendShipApiService
 from Checks.DeleteFriendsChecker import DeleteFriendsChecker
 import json
+from Decorators.LoginStatusCheckDecorator import loginchecker
 
 
 class DeleteFriendsController(Controller):
     def __init__(self):
         self.friendshipservice = FriendShipApiService()
-        self.checkstatusservice = SignInStatusCheckService()
 
     # 定义参数
     def get_options(self):
@@ -24,19 +23,17 @@ class DeleteFriendsController(Controller):
         self.compute(username)
 
     # 处理业务逻辑
+    @loginchecker
     def main(self, username):
-        if self.checkstatusservice.check():
-            friends = self.friendshipservice.Friends()
-            friendsdata = json.loads(friends.text)["items"]
-            for x in friendsdata:
-                if x["displayName"] == username:
-                    r = self.DeleteFriend(x["userId"])
-                    r = json.loads(r.text)
-                    if r["code"] == 0:
-                        return ""
-                    else:
-                        return r["message"]
+        friendslist = self.friendshipservice.Friends()
+        friendslist = json.loads(friendslist.text)["items"]
+        for x in friendslist:
+            if x["displayName"] == username:
+                err = self.DeleteFriend(x["userId"])
+                err = json.loads(err.text)
+                if err["code"] == 0:
+                    return ""
+                else:
+                    return err["message"]
 
-            return "The user name you entered is incorrect!"
-        else:
-            return "You are not logged in!"
+        return "The user name you entered is incorrect!"

@@ -2,8 +2,6 @@ from package import stable
 
 
 class ApiAddressService(object):
-    serverAddress = None
-
     def __init__(self):
         if stable:
             self.serverAddress = "https://server.kahla.app"

@@ -9,9 +9,6 @@ class GroupApiService(object):
         self.storagecookie = StorageCookieService()
 
     def LeaveGroup(self, groupname):
-        r = requests.post("{0}/Groups/LeaveGroup".format(self.apiaddress.getaddress()), data={
-            "groupName": groupname
-        },
-            cookies=self.storagecookie.get())
-
-        return r
+        return requests.post("{0}/Groups/LeaveGroup".format(self.apiaddress.getaddress()), data={
+                "groupName": groupname
+            }, cookies=self.storagecookie.get())
