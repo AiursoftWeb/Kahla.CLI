@@ -21,10 +21,9 @@ class GroupsController(Controller):
     # 处理业务逻辑
     @loginchecker
     def main(self):
-        friends = self.friendshipservice.Friends()
-        friendslist = json.loads(friends.text)["items"]
+        mines = self.friendshipservice.Mine()
+        friendslist = json.loads(mines.text)["groups"]
         datas = []
         for x in friendslist:
-            if x["discriminator"] != "PrivateConversation":
-                datas.append(x["displayName"])
+            datas.append(x["name"])
         return datas

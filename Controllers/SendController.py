@@ -31,7 +31,7 @@ class SendController(Controller):
     # 处理业务逻辑
     @loginchecker
     def main(self, username, message):
-            friends = self.friendshipservice.Friends()
+            friends = self.conversionservice.All()
             friendslist = json.loads(friends.text)["items"]
             for user in friendslist:
                 if user['displayName'] == username:

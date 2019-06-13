@@ -25,17 +25,16 @@ class LeaveGroupsController(Controller):
     # 处理业务逻辑
     @loginchecker
     def main(self, group):
-        friends = self.friendshipservice.Friends()
-        friendslist = json.loads(friends.text)["items"]
+        mines = self.friendshipservice.Mine()
+        friendslist = json.loads(mines.text)["groups"]
         for x in friendslist:
-            if x["displayName"] == group:
-                if x["discriminator"] == "GroupConversation":
-                    err = self.groupservice.LeaveGroup(x["displayName"])
-                    err = json.loads(err.text)
+            if x["name"] == group:
+                err = self.groupservice.LeaveGroup(x["name"])
+                err = json.loads(err.text)
 
-                    if err["code"] == 0:
-                        return ""
-                    else:
-                        return err["message"]
+                if err["code"] == 0:
+                    return ""
+                else:
+                    return err["message"]
 
         return "The user name you entered is incorrect!"

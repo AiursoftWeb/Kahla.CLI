@@ -8,6 +8,10 @@ class ConversationApiService(object):
         self.apiaddress = ApiAddressService()
         self.storagecookie = StorageCookieService()
 
+    def All(self):
+        return requests.get("{0}/Conversation/All".format(self.apiaddress.getaddress()),
+                         cookies=self.storagecookie.get())
+
     def SendMessage(self, conversationId, Message):
         return requests.post("{0}/Conversation/SendMessage".format(self.apiaddress.getaddress()), data={
                 "Id": conversationId,
