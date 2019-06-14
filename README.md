@@ -15,15 +15,6 @@ View Help
 $ kahla --help
 ```
 
-Use the release version or stagging version
-
-The default is to use the release version without setting it
-
-```bash
-$ kahla usemaster # use release version
-$ kahla usestagging # use stagging version
-```
-
 Login
 
 ```bash
