@@ -1,12 +1,11 @@
 from Library.Controller import Controller
-from Services.SignInStatusCheckService import SignInStatusCheckService
 from Services.HomeFloderConfig import HomeFloderConfig
 import os
+from Decorators.LoginStatusCheckDecorator import loginchecker
 
 
 class LogoutController(Controller):
     def __init__(self):
-        self.checksignstatus = SignInStatusCheckService()
         self.homeconfig = HomeFloderConfig()
 
     # 定义参数
@@ -19,13 +18,11 @@ class LogoutController(Controller):
         self.compute()
 
     # 处理业务逻辑
+    @loginchecker
     def main(self):
-        if self.checksignstatus.check():
-            try:
-                os.remove(
-                    "{0}/user.cookie.bin".format(self.homeconfig.getconfigpath()))
-                return ""
-            except BaseException:
-                return "You are not logged in!"
-        else:
+        try:
+            os.remove(
+                "{0}/user.cookie.bin".format(self.homeconfig.getconfigpath()))
+            return ""
+        except BaseException:
             return "You are not logged in!"

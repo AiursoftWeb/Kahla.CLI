@@ -6,6 +6,7 @@ from Services.ConversationApiService import ConversationApiService
 from Checks.SendChecker import SendChecker
 from Library.cryptojs import encrypt
 import json
+from Decorators.LoginStatusCheckDecorator import loginchecker
 
 
 class SendController(Controller):
@@ -28,27 +29,24 @@ class SendController(Controller):
         self.compute(username, message)
 
     # 处理业务逻辑
+    @loginchecker
     def main(self, username, message):
-        if self.checkstatusservice.check():
-            friends = self.friendshipservice.Friends()
-            friendsdata = json.loads(friends.text)["items"]
-            for x in friendsdata:
-                if x['displayName'] == username:
+            friends = self.conversionservice.All()
+            friendslist = json.loads(friends.text)["items"]
+            for user in friendslist:
+                if user['displayName'] == username:
                     message = encrypt(
                         bytes(
                             message,
                             "utf-8"),
                         bytes(
-                            x["aesKey"],
+                            user["aesKey"],
                             "utf-8"))
-                    r = self.conversionservice.SendMessage(
-                        x['conversationId'], message)
-                    resultdata = json.loads(r.text)
-                    if resultdata["code"] == 0:
+                    err = self.conversionservice.SendMessage(user['conversationId'], message)
+                    err = json.loads(err.text)
+                    if err["code"] == 0:
                         return ""
                     else:
-                        return "The message could not be sent successfully!"
+                        return err["message"]
 
             return "Your user name is incorrect!"
-        else:
-            return "You are not logged in!"

@@ -1,16 +1,15 @@
 from flask_script import Option
 from Library.Controller import Controller
-from Services.SignInStatusCheckService import SignInStatusCheckService
 from Services.FriendShipApiService import FriendShipApiService
 from Services.GroupApiService import GroupApiService
 import json
+from Decorators.LoginStatusCheckDecorator import loginchecker
 
 
 class LeaveGroupsController(Controller):
     def __init__(self):
         self.friendshipservice = FriendShipApiService()
-        self.groupservice = GroupApiService
-        self.checkstatusservice = SignInStatusCheckService()
+        self.groupservice = GroupApiService()
 
     # 定义参数
     def get_options(self):
@@ -24,16 +23,18 @@ class LeaveGroupsController(Controller):
         self.compute(group)
 
     # 处理业务逻辑
+    @loginchecker
     def main(self, group):
-        if self.checkstatusservice.check():
-            friends = self.friendshipservice.Friends()
-            friendsdata = json.loads(friends.text)["items"]
-            for x in friendsdata:
-                if x["displayName"] == group:
-                    if x["discriminator"] == "GroupConversation":
-                        self.groupservice.LeaveGroup(x["displayName"])
-                        return ""
+        mines = self.friendshipservice.Mine()
+        friendslist = json.loads(mines.text)["groups"]
+        for x in friendslist:
+            if x["name"] == group:
+                err = self.groupservice.LeaveGroup(x["name"])
+                err = json.loads(err.text)
 
-            return "The user name you entered is incorrect!"
-        else:
-            return "You are not logged in!"
+                if err["code"] == 0:
+                    return ""
+                else:
+                    return err["message"]
+
+        return "The user name you entered is incorrect!"

@@ -15,9 +15,10 @@ class SignInStatusCheckService(object):
         if os.path.exists(
                 "{0}/user.cookie.bin".format(HomeFloderConfig().getconfigpath())):
             cookies = self.storagecookie.get()
-            result = json.loads(requests.post("{0}/Auth/SignInStatus".format(self.apiaddress.getaddress()),
-                                              cookies=cookies).text)
-            if result["value"]:
+            err = requests.post("{0}/Auth/SignInStatus".format(self.apiaddress.getaddress()),
+                                              cookies=cookies)
+            err = json.loads(err.text)
+            if err["value"]:
                 return True
             else:
                 return False
