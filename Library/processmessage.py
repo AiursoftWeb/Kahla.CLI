@@ -22,7 +22,7 @@ class ProcessMessage(object):
         if message.find("[file]") >= 0:
             data = message.split("]")[1].split("|")
             fileuri = data[0]
-            message = "File | {2} | {0} | {1}".format(
+            message = "File | https://probe.aiursoft.com/Download/InSites/{2} | {0} | {1}".format(
                 data[1], data[2], fileuri)
             return message
 
