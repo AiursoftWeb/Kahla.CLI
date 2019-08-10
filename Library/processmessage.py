@@ -8,33 +8,27 @@ class ProcessMessage(object):
 
     def processMessage(self, message):
         if message.find("[img]") >= 0:
-            message = message.split("]")[1].split("-")[0]
-            message = "Photo | https://ossendpoint.azureedge.net/download/fromkey/{0}".format(
+            message = message.split("]")[1].split("|")[0]
+            message = "Photo | https://probe.aiursoft.com/Download/InSites/{0}".format(
                 message)
             return message
 
         if message.find("[video]") >= 0:
             message = message.split("]")[1]
-            message = "Video | https://ossendpoint.azureedge.net/download/fromkey/{0}".format(
+            message = "Video | https://probe.aiursoft.com/Download/InSites/{0}".format(
                 message)
             return message
 
         if message.find("[file]") >= 0:
-            data = message.split("]")[1].split("-")
-            fileuri = self.fileservice.FileDownloadAddress(data[0])
-            fileuri = json.loads(fileuri.text)
-            fileuri = fileuri["downloadPath"]
-            message = "File | {2} | {0} | {1}".format(
+            data = message.split("]")[1].split("|")
+            fileuri = data[0]
+            message = "File | https://probe.aiursoft.com/Download/InSites/{2} | {0} | {1}".format(
                 data[1], data[2], fileuri)
             return message
 
         if message.find("[audio]") >= 0:
-            audiokey = message.split("]")[1]
-            audiouri = self.fileservice.FileDownloadAddress(audiokey)
-            audiouri = json.loads(audiouri.text)
-            audiouri = audiouri["downloadPath"]
-            audiouri = audiouri.replace("audio", "audio.ogg")
-            message = "Audio | {0}".format(audiouri)
+            audiouri = message.split("]")[1]
+            message = "Audio | https://probe.aiursoft.com/Download/InSites/{0}".format(audiouri)
             return message
 
         return "Text | {0}".format(message)
